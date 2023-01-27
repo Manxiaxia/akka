@@ -107,6 +107,21 @@ object GreeterMain {
 // 2. in GreeterMain apply function, Behaviors.setup (usually defined in an actor) is defined which
 // contains logic of initial bootstrap
 object AkkaQuickstart extends App {
+//  val salaries = Seq(20_000, 70_000, 40_000)
+//  // parameter list => value gets returned
+//  val doubleSalary = (x:Int) => x * 2
+//  def double(x : Int) : Int = {
+//    x * 2
+//  }
+//
+//  val newSalaries = salaries.map(x => {
+//    x * 2
+//  })
+//  val anotherWayNewSalaries = salaries.map(x => x * 2)
+//  val anotherNewSalaries = salaries.map(doubleSalary)
+//  val anotherAnotherNewSalaries = salaries.map(double)
+
+
   //#actor-system
 
   // ActorSystem is the initial entry point into Akka
