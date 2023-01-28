@@ -32,10 +32,10 @@ object PongActor {
       context.log.info(s"pong pong pong ${n}, whom=${message.whom}")
       if(n == 0) {
         Behaviors.stopped
+      } else {
+        message.from ! PingActor.PingMsg(message.whom, context.self)
+        pongAction(n - 1)
       }
-
-      message.from ! PingActor.PingMsg(message.whom, context.self)
-      pongAction(n - 1)
     })
   }
 }
@@ -52,7 +52,6 @@ object PingPongMain {
       Behaviors.receiveMessage(message => {
         val pongActor = context.spawn(PongActor(3), "pongActor")
         pingActor ! PingActor.PingMsg(message.whom, pongActor)
-
         Behaviors.same
       })
     })
