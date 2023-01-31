@@ -28,7 +28,7 @@ object StartStopActor2 {
     Behaviors.setup(new StartStopActor2(_))
 }
 
-class StartStopActor2(context : ActorContext[String]) extends AbstractBehavior[String](context) {
+class StartStopActor2(context: ActorContext[String]) extends AbstractBehavior[String](context) {
   println("second started")
 
   override def onMessage(msg: String): Behavior[String] = {
@@ -48,8 +48,6 @@ object Lifecycle {
 }
 
 class Lifecycle(context : ActorContext[String]) extends AbstractBehavior[String](context) {
-  println("lifecycle started")
-
   override def onMessage(msg: String): Behavior[String] = {
     msg match {
       case "start" => {
