@@ -29,19 +29,19 @@ class DeviceManager(context: ActorContext[Command]) extends AbstractBehavior[Com
   override def onMessage(msg: Command): Behavior[Command] =
     msg match {
       case trackMsg @ RequestTrackDevice(groupId, _, replyTo) =>
-        groupIdToActor.get(groupId) match {
-          case Some(ref) =>
-            ref ! trackMsg
-          case None =>
-            context.log.info(s"Creating device group actor for ${groupId}")
-            val groupActor = context.spawn(DeviceGroup(groupId), "group-" + groupId)
-            context.watchWith(groupActor, DeviceGroupTermianted(groupId))
-            groupActor ! trackMsg
-            groupIdToActor += groupId -> groupActor
-        }
+//        groupIdToActor.get(groupId) match {
+//          case Some(ref) =>
+//            ref ! trackMsg
+//          case None =>
+//            context.log.info(s"Creating device group actor for ${groupId}")
+//            val groupActor = context.spawn(DeviceGroup(groupId), "group-" + groupId)
+//            context.watchWith(groupActor, DeviceGroupTermianted(groupId))
+//            groupActor ! trackMsg
+//            groupIdToActor += groupId -> groupActor
+//        }
         this
     }
 
-  case req @ RequestDeviceList(requestId, groupId, replyTo) =>
+//  case req @ RequestDeviceList(requestId, groupId, replyTo) =>
 
 }
