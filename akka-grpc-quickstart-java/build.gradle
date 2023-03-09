@@ -1,0 +1,52 @@
+plugins {
+  id 'java'
+  id 'application'
+  id "com.lightbend.akka.grpc.gradle" version '2.3.0'
+}
+
+repositories {
+  mavenCentral()
+  mavenLocal()
+}
+
+
+dependencies {
+
+  // The Gradle plugin for Akka-gRPC doesn't support 2.13:
+  // https://github.com/akka/akka-grpc/pull/1025
+  implementation 'com.typesafe.akka:akka-actor-typed_2.12:2.7.0'
+  implementation 'com.typesafe.akka:akka-discovery_2.12:2.7.0'
+  implementation 'com.typesafe.akka:akka-protobuf_2.12:2.7.0'
+  implementation 'com.typesafe.akka:akka-stream_2.12:2.7.0'
+  implementation 'com.typesafe.akka:akka-pki_2.12:2.7.0'
+
+  implementation 'com.typesafe.akka:akka-http_2.12:10.5.0'
+  implementation 'com.typesafe.akka:akka-http2-support_2.12:10.5.0'
+
+  implementation 'ch.qos.logback:logback-classic:1.2.3'
+
+  testImplementation 'com.typesafe.akka:akka-actor-testkit-typed_2.12:2.7.0'
+  testImplementation 'com.typesafe.akka:akka-stream-testkit_2.12:2.7.0'
+  testImplementation 'junit:junit:4.13'
+}
+
+task runServer(type: JavaExec) {
+  classpath = sourceSets.main.runtimeClasspath
+
+  main = 'com.example.helloworld.GreeterServer'
+}
+
+
+task runClient(type: JavaExec) {
+  classpath = sourceSets.main.runtimeClasspath
+
+  main = 'com.example.helloworld.GreeterClient'
+
+  // arguments to pass to the application
+  if (project.hasProperty("GreeterClient.user"))
+    args  project.getProperty("GreeterClient.user")
+}
+
+application {
+  mainClassName = 'com.example.helloworld.GreeterServer'
+}
