@@ -4,6 +4,7 @@ import akka.stream.scaladsl.{Sink, Source}
 
 import scala.concurrent.ExecutionContext
 
+// example from https://doc.akka.io/docs/akka/current/stream/stream-quickstart.html
 object Tweets extends App {
   implicit val system: ActorSystem = ActorSystem()
 
